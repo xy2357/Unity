@@ -1,0 +1,13 @@
+{
+  "id": "st_revive_mark",
+  "name": "复苏标记",
+  "maxStacks": 3,
+  "duration": 12.0,
+  "dispellable": true,
+  "onFatal": {
+    "type": "PreventDeath",
+    "hpLeft": 1,
+    "cooldown": 15.0
+  },
+  "conflictGroup": "revive_group"
+}

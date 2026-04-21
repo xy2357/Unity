@@ -1,0 +1,45 @@
+{
+  "id": "sk_taunt_shout",
+  "name": "嘲讽怒吼",
+  "cooldown": {
+    "time": 12,
+    "startsAt": "OnCast"
+  },
+  "cost": {
+    "energy": 1
+  },
+  "phases": [
+    {
+      "trigger": {
+        "type": "OnCardPlayed"
+      },
+      "targeting": {
+        "faction": "enemy",
+        "shape": {
+          "type": "circle",
+          "radius": 6.0
+        },
+        "sort": "nearest",
+        "lock": "onFire",
+        "onEmpty": "skip"
+      },
+      "effects": [
+        {
+          "type": "ApplyStatus",
+          "statusId": "st_taunted",
+          "stacks": 1,
+          "duration": 6.0
+        },
+        {
+          "type": "ThreatMultiplier",
+          "value": 5.0,
+          "duration": 6.0
+        }
+      ],
+      "fx": {
+        "vfx": "fx_taunt",
+        "sfx": "sfx_roar"
+      }
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "id": "st_taunted",
+  "name": "被嘲讽",
+  "duration": 6.0,
+  "aiHint": {
+    "forceTarget": "taunter"
+  }
+}

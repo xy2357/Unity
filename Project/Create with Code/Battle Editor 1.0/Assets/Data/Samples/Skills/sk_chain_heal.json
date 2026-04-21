@@ -1,0 +1,44 @@
+{
+  "id": "sk_chain_heal",
+  "name": "圣光链",
+  "cooldown": {
+    "time": 8,
+    "startsAt": "OnCast"
+  },
+  "cost": {
+    "energy": 2
+  },
+  "phases": [
+    {
+      "trigger": {
+        "type": "OnCardPlayed"
+      },
+      "targeting": {
+        "faction": "ally",
+        "shape": {
+          "type": "chain",
+          "jumps": 3,
+          "radius": 8
+        },
+        "sort": "lowestHpPercent",
+        "lock": "onFire",
+        "onEmpty": "cancel"
+      },
+      "effects": [
+        {
+          "type": "Heal",
+          "amount": "clamp(Mag*1.2+Atk*0.6, 50, 9999)"
+        },
+        {
+          "type": "ApplyStatus",
+          "statusId": "st_revive_mark",
+          "stacks": 1
+        }
+      ],
+      "fx": {
+        "vfx": "fx_chain_heal",
+        "sfx": "sfx_heal_cast"
+      }
+    }
+  ]
+}

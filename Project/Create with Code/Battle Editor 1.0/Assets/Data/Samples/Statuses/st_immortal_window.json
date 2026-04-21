@@ -1,0 +1,12 @@
+{
+  "id": "st_immortal_window",
+  "name": "免死窗口",
+  "duration": 4.0,
+  "onFatal": {
+    "type": "PreventDeath",
+    "hpLeft": 1,
+    "cooldown": 0
+  },
+  "dispellable": false,
+  "conflictGroup": "execute_block"
+}

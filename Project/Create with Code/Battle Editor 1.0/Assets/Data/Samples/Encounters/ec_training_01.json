@@ -1,0 +1,42 @@
+{
+  "encounterId": "ec_training_01",
+  "waves": [
+    {
+      "time": 0,
+      "spawns": [
+        {
+          "unitId": "u_melee",
+          "pos": [
+            0,
+            0,
+            10
+          ],
+          "count": 3
+        }
+      ]
+    },
+    {
+      "time": 20,
+      "spawns": [
+        {
+          "unitId": "u_boss",
+          "pos": [
+            0,
+            0,
+            18
+          ],
+          "count": 1,
+          "statusOnSpawn": [
+            "st_immortal_window"
+          ]
+        }
+      ]
+    }
+  ],
+  "win": {
+    "bossDown": true
+  },
+  "lose": {
+    "partyWipe": true
+  }
+}

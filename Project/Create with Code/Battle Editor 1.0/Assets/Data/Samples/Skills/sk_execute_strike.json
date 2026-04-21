@@ -1,0 +1,48 @@
+{
+  "id": "sk_execute_strike",
+  "name": "处决斩",
+  "cooldown": {
+    "time": 10,
+    "startsAt": "OnCast"
+  },
+  "cost": {
+    "energy": 3
+  },
+  "phases": [
+    {
+      "trigger": {
+        "type": "OnCardPlayed"
+      },
+      "conditions": [
+        {
+          "type": "TargetHpPct",
+          "op": "<",
+          "value": 0.2
+        }
+      ],
+      "targeting": {
+        "faction": "enemy",
+        "shape": {
+          "type": "single"
+        },
+        "sort": "lowestHpPercent",
+        "lock": "onFire",
+        "onEmpty": "cancel"
+      },
+      "effects": [
+        {
+          "type": "Damage",
+          "amount": "Atk*3.0+Mag*1.0"
+        },
+        {
+          "type": "FailIfTargetHasStatus",
+          "statusId": "st_immortal_window"
+        }
+      ],
+      "fx": {
+        "vfx": "fx_execute",
+        "sfx": "sfx_execute"
+      }
+    }
+  ]
+}
