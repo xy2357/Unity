@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8068268442777889162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e16d027ef683c946b1d3043481b5b4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Description: Boom!!!
+  Radius: 5
+  DamageAmount: 20
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 328cd29feea7c9e448f98552a0eebdd2, type: 3}
+  m_Name: Bomb
+  m_EditorClassIdentifier: 
+  ItemName: Boom
+  ItemSprite: {fileID: 21300000, guid: 03e8583570001eb4e9d14f26967902ed, type: 3}
+  Description: Boom
+  WorldObjectPrefab: {fileID: 5868661217129463643, guid: 5a6774acd479db741b8bf0ab82d9559e,
+    type: 3}
+  UsageEffects:
+  - {fileID: -8068268442777889162}

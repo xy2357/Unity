@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using CreatorKitCode;
 
 public class SpawnerSample : MonoBehaviour
@@ -7,22 +7,41 @@ public class SpawnerSample : MonoBehaviour
 
     void Start()
     {
-        int angle = 15;
-        Vector3 spawnPosition = transform.position;
+        LootAngle myLootAngle = new LootAngle(45);
+
+        SpawnPosition(15);
+        SpawnPosition(55);
+        SpawnPosition(95);
+
+    }
+
+    void SpawnPosition(int angle)
+    {
+        int radius = 2;
 
         Vector3 direction = Quaternion.Euler(0, angle, 0) * Vector3.right;
-        spawnPosition = transform.position + direction * 2;
+        Vector3 spawnPosition = transform.position + direction * radius;
         Instantiate(ObjectToSpawn, spawnPosition, Quaternion.identity);
+    }
+}
 
-        angle = 55;
-        direction = Quaternion.Euler(0, angle, 0) * Vector3.right;
-        spawnPosition = transform.position + direction * 2;
-        Instantiate(ObjectToSpawn, spawnPosition, Quaternion.identity);
+public class LootAngle
+{
+    int angle;
+    int step;
 
-        angle = 95;
-        direction = Quaternion.Euler(0, angle, 0) * Vector3.right;
-        spawnPosition = transform.position + direction * 2;
-        Instantiate(ObjectToSpawn, spawnPosition, Quaternion.identity);
+    public LootAngle(int increment)
+    {
+        angle = 0;
+        step = increment;
+    }
+
+    int NextAngle()
+    {
+        int currentAngle = angle;
+        angle = Helpers.WrapAngle(angle + step);
+
+        return currentAngle;
     }
 }
 
