@@ -21,7 +21,7 @@ public class HealthCollectible : MonoBehaviour
         PlayerController controller = collision.GetComponent<PlayerController>();
         if (controller != null && controller.health < controller.maxHealth) 
         {
-            controller.ChangeHealth(1);
+            controller.ChangeHealth(5);
             Destroy(gameObject);
         }
     }

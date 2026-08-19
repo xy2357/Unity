@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5395144588833630675}
   - component: {fileID: 5375199086646926064}
   - component: {fileID: 221093665883557626}
+  - component: {fileID: 5354076696796658400}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -191,6 +192,9 @@ MonoBehaviour:
   rigidbody2d: {fileID: 0}
   move: {x: 0, y: 0}
   speed: 3
+  timeInvicible: 2
+  isInvicible: 0
+  damageCooldown: 0
   maxHealth: 5
 --- !u!50 &5375199086646926064
 Rigidbody2D:
@@ -251,16 +255,37 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.43307823}
+  m_Offset: {x: 0.04660529, y: 0.13552123}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
-    oldSize: {x: 1.22, y: 2.54}
+    oldSize: {x: 0.61, y: 1.27}
     newSize: {x: 1.22, y: 2.54}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.22, y: 0.86615646}
+  m_Size: {x: 0.40978467, y: 0.27104247}
   m_EdgeRadius: 0
+--- !u!95 &5354076696796658400
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7308234241662733770}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b77822e0485373d40b5beb92e9a5e728, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
