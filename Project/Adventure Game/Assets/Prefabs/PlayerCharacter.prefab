@@ -188,6 +188,10 @@ MonoBehaviour:
       m_Action: Move
       m_Flags: 8
     m_Flags: 0
+  rigidbody2d: {fileID: 0}
+  move: {x: 0, y: 0}
+  speed: 3
+  maxHealth: 5
 --- !u!50 &5375199086646926064
 Rigidbody2D:
   serializedVersion: 4
@@ -212,7 +216,7 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!61 &221093665883557626
