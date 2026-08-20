@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5375199086646926064}
   - component: {fileID: 221093665883557626}
   - component: {fileID: 5354076696796658400}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196,6 +196,7 @@ MonoBehaviour:
   isInvicible: 0
   damageCooldown: 0
   maxHealth: 5
+  projectilePrefab: {fileID: 7393212173949384311, guid: 4800b4bc20228be4b993738704b856a4, type: 3}
 --- !u!50 &5375199086646926064
 Rigidbody2D:
   serializedVersion: 4
@@ -259,7 +260,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
-    oldSize: {x: 0.61, y: 1.27}
+    oldSize: {x: 1.22, y: 2.54}
     newSize: {x: 1.22, y: 2.54}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

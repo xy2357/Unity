@@ -21,6 +21,8 @@ public class EnemyController : MonoBehaviour
     Animator animator;
 
     Rigidbody2D rigidbody2d;
+    bool broken = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,11 +50,17 @@ public class EnemyController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!broken)
+        {
+            return;
+        }
+
         Vector2 direction = directions[directionIndex];
         rigidbody2d.velocity = direction * speed;
 
         animator.SetFloat("Move X", direction.x);
         animator.SetFloat("Move Y", direction.y);
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -62,5 +70,11 @@ public class EnemyController : MonoBehaviour
         {
             controller.ChangeHealth(-1);
         }
+    }
+
+    public void Fix()
+    {
+        broken = false;
+        rigidbody2d.simulated = false;
     }
 }
