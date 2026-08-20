@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public InputAction MoveAction;
+    public InputAction talkAction;
     public Rigidbody2D rigidbody2d;
     public Vector2 move;
     public float speed = 3f; 
@@ -28,15 +29,24 @@ public class PlayerController : MonoBehaviour
 
     public GameObject projectilePrefab;
 
+    public AudioSource walkAudioSource;
+    public AudioSource sfxAudioSource;
+
+    public AudioClip playerWalk;
+    public AudioClip throwProjectile;
+
     // Start is called before the first frame update
     void Start()
     {
         MoveAction.Enable();
+        talkAction.Enable();
         rigidbody2d = GetComponent<Rigidbody2D>();
 
         currentHealth = maxHealth;
 
         animator = GetComponent<Animator>();
+
+        walkAudioSource.clip = playerWalk;
     }
 
     // Update is called once per frame
@@ -55,8 +65,19 @@ public class PlayerController : MonoBehaviour
 
         if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))
         {
+            if (!walkAudioSource.isPlaying)
+            {
+                walkAudioSource.Play();
+            }
             moveDirection.Set(move.x,move.y);
             moveDirection.Normalize();
+        }
+        else
+        {
+            if (walkAudioSource.isPlaying)
+            {
+                walkAudioSource.Stop();
+            }
         }
 
 
@@ -67,6 +88,11 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.C)) 
         {
             Launch();
+        }
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            FindFriend();
         }
     }
 
@@ -100,5 +126,27 @@ public class PlayerController : MonoBehaviour
         Projectile projectile = projectileObject.GetComponent<Projectile>();
         projectile.Launch(moveDirection, 300);
         animator.SetTrigger("Launch");
+        sfxAudioSource.PlayOneShot(throwProjectile);
+    }
+
+    void FindFriend()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(rigidbody2d.position + Vector2.up * 0.2f, moveDirection, 1.5f, LayerMask.GetMask("NPC"));
+        if (hit.collider != null)
+        {
+            NonPlayerCharacter character = hit.collider.GetComponent<NonPlayerCharacter>();
+            if (character != null) 
+            {
+                UIHandler.instance.DisplayDialogue();
+            }
+        }
+    }
+
+    public void PlaySound(AudioClip clip)
+    {
+        if (clip != null)
+        {
+            sfxAudioSource.PlayOneShot(clip);
+        }
     }
 }

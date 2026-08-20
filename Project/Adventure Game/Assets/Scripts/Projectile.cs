@@ -10,7 +10,6 @@ public class Projectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     void Awake()
@@ -39,7 +38,7 @@ public class Projectile : MonoBehaviour
             enemy.Fix();
         }
 
-        Destroy(enemy.gameObject);
+        //Destroy(enemy.gameObject);
         Destroy(gameObject);
     }
 

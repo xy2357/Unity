@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class HealthCollectible : MonoBehaviour
 {
+    public AudioClip collectedClip;
+
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -21,6 +22,7 @@ public class HealthCollectible : MonoBehaviour
         PlayerController controller = collision.GetComponent<PlayerController>();
         if (controller != null && controller.health < controller.maxHealth) 
         {
+            controller.PlaySound(collectedClip);
             controller.ChangeHealth(5);
             Destroy(gameObject);
         }
