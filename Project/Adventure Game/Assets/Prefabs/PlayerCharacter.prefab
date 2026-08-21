@@ -220,6 +220,8 @@ MonoBehaviour:
   sfxAudioSource: {fileID: 0}
   playerWalk: {fileID: 8300000, guid: a0ccbead04ec99c4e9ddc660333de268, type: 3}
   throwProjectile: {fileID: 8300000, guid: c87de0cae68cdbb409eec8ba23a860d0, type: 3}
+  playHit: {fileID: 8300000, guid: c7d3a91ac32abbe47a8931a8ffc37bc6, type: 3}
+  playerHitEffect: {fileID: 6781766980943616870, guid: 6d4e398388a8f294a89253f4f5428784, type: 3}
 --- !u!50 &5375199086646926064
 Rigidbody2D:
   serializedVersion: 4

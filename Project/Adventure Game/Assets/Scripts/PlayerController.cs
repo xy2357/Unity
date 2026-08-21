@@ -34,6 +34,9 @@ public class PlayerController : MonoBehaviour
 
     public AudioClip playerWalk;
     public AudioClip throwProjectile;
+    public AudioClip playHit;
+
+    public ParticleSystem playerHitEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -113,6 +116,8 @@ public class PlayerController : MonoBehaviour
             isInvicible = true;
             damageCooldown = timeInvicible;
             animator.SetTrigger("Hit");
+            sfxAudioSource.PlayOneShot(playHit);
+            Instantiate(playerHitEffect, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
         }
 
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
