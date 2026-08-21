@@ -21,8 +21,13 @@ public class EnemyController : MonoBehaviour
     Animator animator;
 
     Rigidbody2D rigidbody2d;
+
     bool broken = true;
-    AudioSource audioSource;
+    public AudioSource walkAndHitAudioSource;
+    public AudioSource fixAudioSource;
+    public AudioClip enemyHit;
+
+    public ParticleSystem smokeEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +36,7 @@ public class EnemyController : MonoBehaviour
         timer = changeTime;
 
         animator = GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>();
+        walkAndHitAudioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -76,10 +81,22 @@ public class EnemyController : MonoBehaviour
 
     public void Fix()
     {
-        animator.SetTrigger("Fixed");
-        audioSource.Stop();
-
+        if (!broken)
+        {
+            return;
+        }
         broken = false;
+        animator.SetTrigger("Fixed");
+        smokeEffect.Stop();
+
+        walkAndHitAudioSource.Stop();
+        walkAndHitAudioSource.PlayOneShot(enemyHit);
+
+        fixAudioSource.Play();
+
+        rigidbody2d.velocity = Vector2.zero;
         rigidbody2d.simulated = false;
+
+
     }
 }
