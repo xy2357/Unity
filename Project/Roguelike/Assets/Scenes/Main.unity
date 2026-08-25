@@ -130,6 +130,61 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c5e149b7d309ba48aa57116bc68ec50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+--- !u!1 &803764305
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 803764307}
+  - component: {fileID: 803764306}
+  m_Layer: 5
+  m_Name: UIDocument
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &803764306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803764305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
+  m_PanelSettings: {fileID: 11400000, guid: 055c2b1631423474ca67a6e405e45d63, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 524ffdb3ad4eb5c4795e10041b613bff, type: 3}
+  m_SortingOrder: 0
+  m_Position: 0
+  m_WorldSpaceSizeMode: 1
+  m_WorldSpaceWidth: 1920
+  m_WorldSpaceHeight: 1080
+  m_PivotReferenceSize: 0
+  m_Pivot: 0
+  m_WorldSpaceCollider: {fileID: 0}
+--- !u!4 &803764307
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803764305}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &837755169
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,8 +431,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d12e475efeb257e4d92c6f4d78bb1084, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  boardManager: {fileID: 1546857559}
-  playerController: {fileID: 690789513}
+  BoardManager: {fileID: 1546857559}
+  PlayerController: {fileID: 690789513}
+  UIDoc: {fileID: 803764306}
 --- !u!1 &1546857556
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,6 +507,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 58c4b6e932d4c374993d5426f728a92a, type: 2}
   - {fileID: 11400000, guid: f1bff76ad98a82845bf0e000b8660061, type: 2}
   Player: {fileID: 690789513}
+  FoodPrefabs:
+  - {fileID: -8459149226177089327, guid: 1d4fff4a38f01f141ba32dbb8c607883, type: 3}
+  - {fileID: 3755309380073180484, guid: 273c97bb51868dc40a4406e4767209ad, type: 3}
+  WallPrefab: {fileID: 7770332223477050407, guid: 3dda84d6a8476c54894e3772469acdab, type: 3}
 --- !u!1 &1760379216
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,3 +646,4 @@ SceneRoots:
   - {fileID: 1546857558}
   - {fileID: 846445449}
   - {fileID: 1540302037}
+  - {fileID: 803764307}
