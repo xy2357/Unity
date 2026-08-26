@@ -23,7 +23,8 @@ public class BoardManager : MonoBehaviour
 
     public PlayerController Player;
     public FoodObject[] FoodPrefabs;
-    public WallObject WallPrefab;
+    public WallObject[] WallPrefabs;
+    public ExitCellObject ExitCellObject;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void Init()
@@ -58,6 +59,10 @@ public class BoardManager : MonoBehaviour
         }
 
         m_EmptyCellsList.Remove(new Vector2Int(1, 1));
+
+        Vector2Int endCoord = new Vector2Int(Width - 2, Height - 2);
+        AddObject(Instantiate(ExitCellObject), endCoord);
+        m_EmptyCellsList.Remove(endCoord);
         GenerateWall();
         GenerateFood();
     }
@@ -72,14 +77,14 @@ public class BoardManager : MonoBehaviour
 
             m_EmptyCellsList.RemoveAt(randomIndex);
             CellData data = m_BoardData[coord.x, coord.y];
-            FoodObject newFood = Instantiate(FoodPrefabs[Random.Range(0,FoodPrefabs.Length)]);
+            FoodObject newFood = Instantiate(FoodPrefabs[Random.Range(0, FoodPrefabs.Length)]);
             AddObject(newFood, coord);
         }
     }
 
     void GenerateWall()
     {
-        int wallCount = Random.Range(6, 10);
+        int wallCount = Random.Range(15, 20);
         for (int i = 0; i < wallCount; i++)
         {
             int randomIndex = Random.Range(0, m_EmptyCellsList.Count);
@@ -87,7 +92,7 @@ public class BoardManager : MonoBehaviour
 
             m_EmptyCellsList.RemoveAt(randomIndex);
             CellData data = m_BoardData[coord.x, coord.y];
-            WallObject newWall = Instantiate(WallPrefab);
+            WallObject newWall = Instantiate(WallPrefabs[Random.Range(0, WallPrefabs.Length)]);
 
             AddObject(newWall, coord);
         }
@@ -99,6 +104,27 @@ public class BoardManager : MonoBehaviour
         obj.transform.position = CellToWorld(coord);
         data.ContainerObject = obj;
         obj.Init(coord);
+    }
+
+    public void Clean()
+    {
+        if (m_BoardData == null)
+            return;
+
+        for (int y = 0; y < Height; ++y)
+        {
+            for (int x = 0; x < Width; ++x)
+            {
+                var cellData = m_BoardData[x, y];
+
+                if (cellData.ContainerObject != null)
+                {
+                    Destroy(cellData.ContainerObject);
+                }
+
+                SetCellTile(new Vector2Int(x, y), null);
+            }
+        }
     }
 
     public void SetCellTile(Vector2Int cellIndex, Tile tile)

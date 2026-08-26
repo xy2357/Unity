@@ -4,6 +4,7 @@ using UnityEngine.Tilemaps;
 public class WallObject : CellObject
 {
     public Tile ObstacleTile;
+    public Tile OneHpTile;
     public int MaxHealth = 3;
 
     private int m_HealthPoint;
@@ -23,6 +24,10 @@ public class WallObject : CellObject
         m_HealthPoint -= 1;
         if (m_HealthPoint > 0)
         {
+            if (m_HealthPoint == 1)
+            {
+                GameManager.Instance.BoardManager.SetCellTile(m_Cell, OneHpTile);
+            }
             return false;
         }
 
