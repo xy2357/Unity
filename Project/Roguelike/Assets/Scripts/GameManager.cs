@@ -11,8 +11,8 @@ public class GameManager : MonoBehaviour
     public UIDocument UIDoc;
     private Label m_FoodLabel;
 
-    private int m_FoodAmount = 10;
-    private int m_CurrentLevel = 1;
+    private int m_FoodAmount;
+    private int m_CurrentLevel;
 
     private VisualElement m_GameOverPanel;
     private Label m_GameOverMessage;
@@ -32,14 +32,27 @@ public class GameManager : MonoBehaviour
         TurnManager = new TurnManager();
         TurnManager.OnTick += OnTurnHappen;
 
-        NewLevel();
-
         m_FoodLabel = UIDoc.rootVisualElement.Q<Label>("FoodLabel");
-        m_FoodLabel.text = "Food:" + m_FoodAmount;
+
         m_GameOverPanel = UIDoc.rootVisualElement.Q<VisualElement>("GameOverPanel");
         m_GameOverMessage = m_GameOverPanel.Q<Label>("GameOverMessage");
 
+        StartNewGame();
+    }
+
+    public void StartNewGame()
+    {
         m_GameOverPanel.style.visibility = Visibility.Hidden;
+        m_CurrentLevel = 1;
+        m_FoodAmount = 20;
+        m_FoodLabel.text = "Food:" + m_FoodAmount;
+
+        BoardManager.Clean();
+        BoardManager.Init();
+
+        PlayerController.Init();
+        PlayerController.Spawn(BoardManager, new Vector2Int(1, 1));
+        PlayerController.gameObject.SetActive(true);
     }
 
     public void NewLevel()
@@ -72,7 +85,7 @@ public class GameManager : MonoBehaviour
         {
             PlayerController.GameOver();
             m_GameOverPanel.style.visibility = Visibility.Visible;
-            m_GameOverMessage.text = "Game Over!\n\nYou traveled through " + m_CurrentLevel + " levels";
+            m_GameOverMessage.text = "Game Over!\n\nYou traveled through " + m_CurrentLevel + " levels\n\nRestart the game by the Enter!";
         }
     }
 }

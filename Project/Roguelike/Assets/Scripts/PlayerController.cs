@@ -7,8 +7,14 @@ public class PlayerController : MonoBehaviour
     private BoardManager m_Board;
     private Vector2Int m_CellPosition;
 
-    private bool m_IsGameOver = false;
+    private bool m_IsGameOver;
+    private Animator m_Animator;
 
+
+    private void Awake()
+    {
+        m_Animator = GetComponent<Animator>();
+    }
     public void Spawn(BoardManager boardManager, Vector2Int cell)
     {
         m_Board = boardManager;
@@ -26,11 +32,20 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    public void Init()
+    {
+        m_IsGameOver = false;
+    }
+
     // Update is called once per frame
     void Update()
     {
         if (m_IsGameOver) 
         {
+            if (Keyboard.current.enterKey.wasPressedThisFrame)
+            {
+                GameManager.Instance.StartNewGame();
+            }
             return;
         }
 

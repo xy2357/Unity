@@ -119,7 +119,7 @@ public class BoardManager : MonoBehaviour
 
                 if (cellData.ContainerObject != null)
                 {
-                    Destroy(cellData.ContainerObject);
+                    Destroy(cellData.ContainerObject.gameObject);
                 }
 
                 SetCellTile(new Vector2Int(x, y), null);
