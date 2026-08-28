@@ -16,6 +16,11 @@ public class PlayerController : MonoBehaviour
     private WallObject m_AttackTarget;
     private bool m_IsAttacking;
 
+    public Vector2Int Cell
+    {
+        get { return m_CellPosition; }
+    }
+
     private void Awake()
     {
         m_Animator = GetComponent<Animator>();
@@ -127,12 +132,11 @@ public class PlayerController : MonoBehaviour
 
             if (cellData != null && cellData.Passable)
             {
-                GameManager.Instance.TurnManager.Tick();
-
                 if (cellData.ContainerObject == null)
                 {
                     MoveTo(newCellTarget, false);
                     m_Animator.SetBool("Moving", true);
+                    EndPlayerTurn();
                 }
                 else if (cellData.ContainerObject is WallObject wall)
                 {
@@ -140,13 +144,29 @@ public class PlayerController : MonoBehaviour
                     m_IsAttacking = true;
                     m_Animator.SetTrigger("Attack");
                 }
-                else if (cellData.ContainerObject.PlayerWantsToEnter())
+                else
                 {
-                    MoveTo(newCellTarget, false);
-                    m_Animator.SetBool("Moving", true);
+                    CellObject targetObject = cellData.ContainerObject;
+                    if (targetObject.PlayerWantsToEnter())
+                    {
+                        MoveTo(newCellTarget, false);
+                        m_Animator.SetBool("Moving", true);
+                    }
+
+                    EndPlayerTurn();
                 }
             }
         }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        if (m_IsGameOver)
+        {
+            return;
+        }
+        m_Animator.SetTrigger("Hurt");
+        GameManager.Instance.ChangeFood(-damage);
     }
 
     public void AttackHit()
@@ -154,6 +174,7 @@ public class PlayerController : MonoBehaviour
         if (m_AttackTarget != null)
         {
             m_AttackTarget.PlayerWantsToEnter();
+            EndPlayerTurn();
         }
     }
 
@@ -161,6 +182,11 @@ public class PlayerController : MonoBehaviour
     {
         m_IsAttacking = false;
         m_AttackTarget = null;
+    }
+
+    private void EndPlayerTurn()
+    {
+        GameManager.Instance.TurnManager.Tick();
     }
 
     public void GameOver()

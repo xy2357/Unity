@@ -127,3 +127,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e32456e1a3e1414189ad8b3fa748329, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyObject
+  Health: 3
+  PlayerController: {fileID: -968780902796838635, guid: 4147572ad105e1f4da9cbdef57f66d3a, type: 3}
+  m_Animator: {fileID: 7792936721210659187}
