@@ -24,6 +24,7 @@ public class BoardManager : MonoBehaviour
     public PlayerController Player;
     public FoodObject[] FoodPrefabs;
     public WallObject[] WallPrefabs;
+    public EnemyObject EnemyPrefab;
     public ExitCellObject ExitCellObject;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -65,6 +66,7 @@ public class BoardManager : MonoBehaviour
         m_EmptyCellsList.Remove(endCoord);
         GenerateWall();
         GenerateFood();
+        GenerateEnemy();
     }
 
     void GenerateFood()
@@ -95,6 +97,22 @@ public class BoardManager : MonoBehaviour
             WallObject newWall = Instantiate(WallPrefabs[Random.Range(0, WallPrefabs.Length)]);
 
             AddObject(newWall, coord);
+        }
+    }
+
+    void GenerateEnemy()
+    {
+        int enemyCount = Random.Range(1, 3);
+        for (int i = 0; i < enemyCount; i++)
+        {
+            int randomIndex = Random.Range(0, m_EmptyCellsList.Count);
+            Vector2Int coord = m_EmptyCellsList[randomIndex];
+
+            m_EmptyCellsList.RemoveAt(randomIndex);
+            CellData data = m_BoardData[coord.x, coord.y];
+            EnemyObject newEnemy = Instantiate(EnemyPrefab);
+
+            AddObject(newEnemy, coord);
         }
     }
 
